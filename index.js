@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000; // Use port from environment or default to 3000
 
+const {router} = require('./Router')
+
+app.use(router)
 // A health check endpoint for ECS/ALB
 app.get('/', (req, res) => {
     res.send('Hello World and Hello Universe!');
