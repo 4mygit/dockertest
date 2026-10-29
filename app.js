@@ -7,6 +7,10 @@ app.get('/health', (req, res) => {
     res.status(200).json({ status: 'UP' });
 });
 
+app.get('/api', (req, res) => {
+    res.status(200).json({ mssg: 'This API should be connected to DB later' });
+});
+
 app.get('/', (req, res) => {
     res.send('Hello World from Docker and ECS!');
 });
