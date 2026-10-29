@@ -3,12 +3,20 @@ const app = express();
 const port = process.env.PORT || 3000; // Use port from environment or default to 3000
 
 // A health check endpoint for ECS/ALB
+app.get('/', (req, res) => {
+    res.send('Hello World and Hello Universe!');
+});
+
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'UP' });
 });
 
-app.get('/', (req, res) => {
-    res.send('Hello World and Hello Universe!');
+app.get('/api', (req, res) => {
+    res.status(200).json({ mssg: 'This API should be connected to DB later' });
+});
+
+app.get('/test', (req, res) => {
+    res.send('Cant believe my eyes!');
 });
 
 app.listen(port, () => {
