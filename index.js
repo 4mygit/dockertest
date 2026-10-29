@@ -8,7 +8,7 @@ app.get('/health', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.send('Hello World from Docker and ECS!');
+    res.send('Hello World and Hello Universe!');
 });
 
 app.listen(port, () => {
