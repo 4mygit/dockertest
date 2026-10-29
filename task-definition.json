@@ -1,29 +1,51 @@
+
 {
-  "family": "my-web-app-task",
-  "networkMode": "awsvpc",
-  "requiresCompatibilities": ["FARGATE"],
-  "cpu": "256",
-  "memory": "512",
-  "executionRoleArn": "arn:aws:iam::927001279165:role/ecsTaskExecutionRole",
+  "family": "github-ecs-docker-task",
   "containerDefinitions": [
     {
-      "name": "my-web-app",
-      "image": "927001279165.dkr.ecr.ap-south-1.amazonaws.com/my-web-app:latest",
+      "name": "github-ecs-docker-container",
+      "image": "927001279165.dkr.ecr.ap-south-1.amazonaws.com/github-ecs-docker-test:db9f924f02fe72e5cc18e9d7d56057291105eb8d",
+      "cpu": 0,
       "portMappings": [
         {
           "containerPort": 3000,
-          "protocol": "tcp"
+          "hostPort": 3000,
+          "protocol": "tcp",
+          "name": "github-ecs-docker-container-3000-tcp",
+          "appProtocol": "http"
         }
       ],
       "essential": true,
+      "environment": [],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "ulimits": [],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/my-web-app",
+          "awslogs-group": "/ecs/github-ecs-docker-task",
+          "awslogs-create-group": "true",
           "awslogs-region": "ap-south-1",
           "awslogs-stream-prefix": "ecs"
-        }
-      }
+        },
+        "secretOptions": []
+      },
+      "systemControls": []
     }
-  ]
+  ],
+  "executionRoleArn": "arn:aws:iam::927001279165:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "volumes": [],
+  "placementConstraints": [],
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512",
+  "enableFaultInjection": false
 }
